@@ -16,9 +16,9 @@ public class 영식이의손가락 {
         } else {
             answer = limit * 4; // 3 * 4
 
-            if (limit % 2 == 0) {
+            if (limit % 2 == 0) { // 1 부터 시작
                 answer += (finger - 1);
-            } else answer += (5 - finger);
+            } else answer += (5 - finger); // 5 부터 시작
         }
 
         System.out.println(answer);

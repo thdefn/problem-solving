@@ -3,8 +3,21 @@ package main.day5;
 import java.io.*;
 import java.util.*;
 
+/**
+ * 0 0 0 0 0 0 0 0 0
+ * 0 0 0 0 0 0 0 0 0
+ * 0 0 0 0 0 0 0 0 0
+ * 0 0 0 0 0 0 0 0 0
+ * 0 0 0 0 0 0 0 0 0
+ * 0 0 0 0 0 0 0 0 0
+ * 0 0 0 0 0 0 0 0 0
+ * 0 0 0 0 0 0 0 0 0
+ * 0 0 0 0 0 0 0 0 0
+ */
 public class 스도쿠 {
     static int[][] answer;
+    static List<Integer> elements = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -34,16 +47,16 @@ public class 스도쿠 {
     }
 
     static void find(int[][] arr, List<int[]> toFind) {
+        // 0. answer 이 여러 개 있을 수 있는 문제이므로, answer 이 있을 시 빠른 리턴
+        if (answer != null) return;
         if (toFind.isEmpty()) {
             answer = arr;
             return;
         }
 
-        if (answer != null) return;
-
         int i = toFind.get(0)[0];
         int j = toFind.get(0)[1];
-        Set<Integer> remain = new HashSet<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        Set<Integer> remain = new HashSet<>(elements);
 
         // 1. row 에 대한 중복 처리
         for (int k = 0; k < 9; k++) {
@@ -79,7 +92,6 @@ public class 스도쿠 {
         for (int num : remain) {
             copiedArr[i][j] = num;
             find(copiedArr, copied);
-            if (answer != null) return;
         }
     }
 }

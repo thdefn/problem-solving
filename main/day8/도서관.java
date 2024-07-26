@@ -14,6 +14,7 @@ public class 도서관 {
         }
         Arrays.sort(arr);
 
+        // 1. 양수인 경우 처리
         int idx = arr.length - 1;
         long step = 0;
         while (idx >= 0 && arr[idx] > 0) {
@@ -21,6 +22,7 @@ public class 도서관 {
             idx -= M;
         }
 
+        // 2. 음수인 경우 처리
         idx = 0;
         while (idx < arr.length && arr[idx] < 0) {
             step += Math.abs(arr[idx]);

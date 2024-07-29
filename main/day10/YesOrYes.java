@@ -5,6 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/**
+ * 1. 입력 : 그래프, 팬이 있는 노드
+ * 2. 전체 토마토 개수 찾기
+ * 3. dfs 을 사용해 팬이 없는 path 를 찾는다.
+ * 3-1. 리프 노드까지 탐색했는데 팬이 없는 경우 false 리턴
+ * 3-2. false 를 찾으면 탐색 종료
+ * <p>
+ * 3. 출력 : true 면 Yes false 면 yes
+ */
 public class YesOrYes {
     static List<Set<Integer>> graph;
     static Set<Integer> fans;

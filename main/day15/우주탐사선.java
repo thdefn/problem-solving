@@ -2,8 +2,6 @@ package main.day15;
 
 import java.util.*;
 
-// 15 30 21
-//
 public class 우주탐사선 {
 
     public static void main(String[] args) {
@@ -18,43 +16,37 @@ public class 우주탐사선 {
             }
         }
 
+
         System.out.println(MST(graph, K));
-
-
     }
+
+
+
+    //- 임의의 시작 정점을 선택한다
+    //- 현재의 트리에서 연결된 간선 중 최소 가중치 간선의 정점을 선택하여 트리에 추가
+    //- 새로 연결된 정점에서 다시 최소 가중치 간선의 정점을 선택하여 추가
 
     static int MST(int[][] graph, int K) {
-        Queue<int[]> dist = new PriorityQueue<>((o1, o2) -> o1[0] - o2[0]);
-        Set<Integer> tree = new HashSet<>();
+        // 노드의 집합 U 를 K 로 시작함
+        Queue<int[]> pq = new PriorityQueue<>((o1, o2) -> o1[1] - o2[1]);
+        Set<Integer> U = new HashSet<>();
+        pq.add(new int[]{K, 0}); // target, weight
 
-        // 1. 임의의 정점으로 0 선택
-        tree.add(K);
-        for (int i = 0; i < graph.length; i++) {
-            if (graph[K][i] > 0) dist.add(new int[]{graph[K][i], i});
-            else dist.add(new int[]{Integer.MAX_VALUE, i});
-        }
-
-        // 2. 트리의 사이즈가 N 이 될 때까지 최소 간선 찾고, 간선 업데이트 반복
-        int minCost = 0;
-        while (tree.size() < graph.length) {
-            int[] selected = dist.poll(); // 거리, 인덱스
-            int selectedIdx = selected[1];
-            tree.add(selectedIdx);
-            int k = dist.size();
-            minCost += selected[0];
-            // 2. 간선 업데이트
-            Queue<int[]> updated = new PriorityQueue<>((o1, o2) -> o1[0] - o2[0]);
-            while (k-- > 0) {
-                int[] n = dist.poll();
-                int nodeIdx = n[1];
-                if (graph[selectedIdx][nodeIdx] > 0)
-                    n[0] = Math.min(n[0], graph[selectedIdx][nodeIdx]);
-                updated.add(n);
+        int minimumDistance = 0;
+        while (U.size() < graph.length) {
+            int[] cur = pq.poll();
+            int u = cur[0];
+            int uDist = cur[1];
+            if (U.contains(u)) continue;
+            System.out.println(u + " " + uDist);
+            minimumDistance += uDist;
+            U.add(u);
+            for (int i = 0; i < graph.length; i++) {
+                if (u == i) continue;
+                pq.add(new int[]{i, graph[u][i]});
             }
-            dist = updated;
         }
-        return minCost;
+        return minimumDistance;
     }
-
 
 }

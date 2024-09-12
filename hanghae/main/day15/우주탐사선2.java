@@ -3,7 +3,6 @@ package hanghae.main.day15;
 import java.util.Scanner;
 
 public class 우주탐사선2 {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
@@ -46,6 +45,4 @@ public class 우주탐사선2 {
         }
         return minDist;
     }
-
-
 }

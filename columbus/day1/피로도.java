@@ -24,10 +24,8 @@ public class 피로도 {
 
 
         // 1. 일할 수 있는 시간은 0 - 24
-
-
         if (A <= M) {
-            System.out.println(getMaxWork());
+            System.out.println(parametricSearch());
         } else {
             System.out.println(0);
         }
@@ -35,7 +33,7 @@ public class 피로도 {
 
     }
 
-    static long getMaxWork() {
+    static long parametricSearch() {
         int l = 0;
         int r = 24;
 
@@ -68,16 +66,22 @@ public class 피로도 {
 
         int tiredScore = 0;
         while (work-- > 0) {
+            // 2. 피로도가 한계보다 크거나 같다면, 쉬어야함
             while (tiredScore >= M && rest-- > 0) {
                 tiredScore -= C;
             }
 
+            // 3. 피로도 회복했는지 체크
+            // 3-1. 회복못함 -> rest 를 소진했는데 피로도 회복하지 못한 경우
+            // 3-2. 회복함 -> 음수인 경우 0으로 만들어줌
             if (tiredScore >= M) return false;
             else if (tiredScore < 0) tiredScore = 0;
 
+            // 4. 피로도 A 만큼 증가
             tiredScore += A;
         }
 
+        // 5. 일을 다 했을때 피로도에 대한 체크
         while (tiredScore > M && rest-- > 0) {
             tiredScore -= C;
         }

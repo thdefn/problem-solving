@@ -23,8 +23,9 @@ public class 도영이가만든맛있는음식 {
 
 
         long minDiff = Integer.MAX_VALUE;
-        // 1. 하나는 반드시 선택해야 함
+        // 1. 맛 중 하나는 반드시 선택해야 한다 -> 하나는 반드시 선택되게 모든 인덱스를 시작 지점으로 선택한다.
         for (int i = 0; i < N; i++) {
+            // 2. dfs 결과가 최소가 되게 이전 최솟값과 비교한다.
             minDiff = Math.min(dfs(sour, bitter, i + 1, sour[i], bitter[i]), minDiff);
         }
         System.out.println(minDiff);

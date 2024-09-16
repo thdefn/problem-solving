@@ -13,7 +13,7 @@ public class 퇴사 {
             P[i] = sc.nextInt();
         }
 
-
+        // 1. dfs 방식으로 profit 을 최대화 할 수 있는 모든 경우의 수를 살핀다.
         System.out.println(dfs(T, P, 0, 0));
 
 

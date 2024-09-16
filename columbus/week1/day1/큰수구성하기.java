@@ -1,4 +1,4 @@
-package columbus.day1;
+package columbus.week1.day1;
 
 import java.util.Arrays;
 import java.util.Scanner;

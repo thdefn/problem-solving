@@ -1,4 +1,4 @@
-package columbus.day2;
+package columbus.week1.day2;
 
 import java.util.HashSet;
 import java.util.Scanner;

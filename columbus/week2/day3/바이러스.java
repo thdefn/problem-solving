@@ -1,4 +1,4 @@
-package columbus.day3;
+package columbus.week2.day3;
 
 import java.io.BufferedReader;
 import java.io.IOException;

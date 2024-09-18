@@ -10,7 +10,7 @@ import java.util.*;
  * N, 10,000보다 작거나 같은 자연수
  * M, 100,000보다 작거나 같은 자연수
  * A B, A가 B를 신뢰한다 / B를 해킹하면, A를 해킹할 수 있다
- *
+ * <p>
  * 2 -> 1 -> 2
  *
  * <p>
@@ -45,11 +45,12 @@ public class 효율적인해킹 {
             maxCount = Math.max(hackCount[i], maxCount);
         }
 
-
+        StringJoiner sj = new StringJoiner(" ");
         for (int i = 0; i < N; i++) {
             if (hackCount[i] == maxCount)
-                System.out.print((i + 1) + " ");
+                sj.add(String.valueOf((i + 1)));
         }
+        System.out.println(sj);
 
     }
 

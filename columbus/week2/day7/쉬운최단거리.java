@@ -23,10 +23,6 @@ public class 쉬운최단거리 {
         }
 
         int[][] minDistance = new int[n][m];
-        for (int i = 0; i < n; i++) {
-            Arrays.fill(minDistance[i], -1);
-        }
-
         bfs(map, minDistance);
 
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -51,6 +47,8 @@ public class 쉬운최단거리 {
                     minDistance[i][j] = 0;
                 } else if(map[i][j] == 0){
                     minDistance[i][j] = 0;
+                } else {
+                    minDistance[i][j] = -1;
                 }
             }
         }

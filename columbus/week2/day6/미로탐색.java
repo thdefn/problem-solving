@@ -1,6 +1,9 @@
 package columbus.week2.day6;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class 미로탐색 {
@@ -18,9 +21,38 @@ public class 미로탐색 {
         for (int i = 0; i < N; i++) {
             miro[i] = br.readLine().toCharArray();
         }
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        bw.write(dfs(0, 0, new boolean[N][M], 1));
-        bw.flush();
+        System.out.println(bfs());
+    }
+
+    static int bfs() {
+        int[][] distance = new int[N][M];
+        for (int i = 0; i < N; i++) {
+            Arrays.fill(distance[i], -1);
+        }
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{0, 0});
+        distance[0][0] = 1;
+
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+            int i = cur[0];
+            int j = cur[1];
+
+            for (int[] d : drdc) {
+                int nextR = d[0] + i;
+                int nextC = d[1] + j;
+
+                if (nextR < 0 || nextR >= N || nextC < 0 || nextC >= M)
+                    continue;
+
+                if (miro[nextR][nextC] == '1' && distance[nextR][nextC] == -1) {
+                    distance[nextR][nextC] = distance[i][j] + 1;
+                    q.add(new int[]{nextR, nextC});
+                }
+            }
+
+        }
+        return distance[N - 1][M - 1];
     }
 
     static int dfs(int r, int c, boolean[][] visited, int step) {
@@ -41,4 +73,6 @@ public class 미로탐색 {
         }
         return minStep;
     }
+
+
 }
